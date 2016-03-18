@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb",
+
+  "parser": "babel-eslint",
+
+  "quiet": true,
+
+  "rules": {
+    "quotes": [2, "double"], // specify whether double or single quotes should be used
+    "indent": [2, 4], // this option sets a specific tab width for your code (off by default)
+    "comma-dangle": [2, "never"], // disallow or enforce trailing commas
+    "vars-on-top": 2, // requires to declare all vars on top of their containing scope (off by default)
+
+    "react/jsx-indent-props": [2, 4],
+    "new-cap": [2, { "capIsNewExceptions": ["List", "Map", "OrderedMap"] }],
+    "no-unused-vars": [2, {"vars": "all", "args": "all", "varsIgnorePattern": "^_", "argsIgnorePattern": "^_"}]
+  }
+
+}
