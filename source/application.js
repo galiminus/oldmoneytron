@@ -9,6 +9,8 @@ import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import MoneyPage from "pages/money";
 import VariationFormPage from "pages/variation-form-page";
 import VariationListPage from "pages/variation-list-page";
+import BuyRightsPage from "pages/buy-rights-page";
+import SettingsPage from "pages/settings-page";
 
 import Translations from "translations";
 
@@ -42,6 +44,8 @@ const Application = React.createClass({
 
                     <Route path="/edit/:id" component={VariationFormPage} />
                     <Route path="/new" component={VariationFormPage} />
+                    <Route path="/settings" component={SettingsPage} />
+                    <Route path="/buyRights" component={BuyRightsPage} />
                 </Route>
             </Router>
         );

@@ -1,4 +1,7 @@
 export default {
+    "leftnav.settings": "Configuration",
+    "leftnav.buyRights": "Acheter les droits",
+
     "variation.list.range.day": "Par jour",
     "variation.list.range.month": "Par mois",
     "variation.list.range.year": "Par an",

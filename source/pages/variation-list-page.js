@@ -2,11 +2,19 @@ import React, { PropTypes } from "react";
 
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
+import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import IconButton from 'material-ui/lib/icon-button';
+import NavigationMenu from "material-ui/lib/svg-icons/navigation/menu";
+
 import FloatingActionButton from "material-ui/lib/floating-action-button";
 import ContentAdd from "material-ui/lib/svg-icons/content/add";
 import Divider from "material-ui/lib/divider";
 import Tabs from "material-ui/lib/tabs/tabs";
 import Tab from "material-ui/lib/tabs/tab";
+import LeftNav from 'material-ui/lib/left-nav';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 import SwipeableViews from "react-swipeable-views";
 
@@ -20,7 +28,8 @@ const VariationListPage = React.createClass({
 
     contextTypes: {
         translation: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
+        history: PropTypes.object.isRequired,
+        translation: PropTypes.object.isRequired
     },
 
     getDefaultProps() {
@@ -31,7 +40,8 @@ const VariationListPage = React.createClass({
 
     getInitialState() {
         return {
-            slideIndex: 0
+            slideIndex: 0,
+            leftNavOpen: false
         };
     },
 
@@ -43,6 +53,18 @@ const VariationListPage = React.createClass({
 
     goToEditVariationForm(index) {
         this.context.history.push(`/edit/${index}`);
+    },
+
+    goToSettings(e) {
+        e.preventDefault();
+
+        this.context.history.push("/settings");
+    },
+
+    goToBuyRights(e) {
+        e.preventDefault();
+
+        this.context.history.push("/buyRights");
     },
 
     rangeToMultiplier(range) {
@@ -64,17 +86,39 @@ const VariationListPage = React.createClass({
         });
     },
 
+    toggleLeftNav() {
+        this.setState({ leftNavOpen: !this.state.leftNavOpen })
+    },
+
     render() {
         const ranges = ["day", "month", "year"];
 
         return (
             <div>
+                <LeftNav open={this.state.leftNavOpen} docked={false} onRequestChange={this.toggleLeftNav}>
+                    <MenuItem onTouchTap={this.goToSettings}>{this.context.translation["leftnav.settings"]}</MenuItem>
+                    <Divider />
+                    <MenuItem onTouchTap={this.goToBuyRights}>{this.context.translation["leftnav.buyRights"]}</MenuItem>
+                </LeftNav>
+                <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0", backgroundColor: "#4A6A8A", position: "fixed", zIndex: 1 }}>
+                    <ToolbarGroup float="left">
+                        <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.toggleLeftNav}>
+                            <NavigationMenu color="#eee" />
+                        </IconButton>
+                    </ToolbarGroup>
+                    <ToolbarGroup float="left">
+                        <ToolbarTitle
+                            text={"Moneytron"}
+                            style={{ marginTop: 3, color: "#eee" }}
+                        />
+                    </ToolbarGroup>
+                </Toolbar>
                 <Tabs
                     onChange={this.handleChangeIndex}
                     value={this.state.slideIndex}
                     inkBarStyle={{ backgroundColor: "rgb(230, 40, 40)" }}
-                    tabItemContainerStyle={{ backgroundColor: "#4A6A8A" }}
-                    style={{ position: "fixed", width: "100%", zIndex: 1 }}
+                    tabItemContainerStyle={{ backgroundColor: "#5A7A9A" }}
+                    style={{ position: "fixed", width: "100%", zIndex: 1, marginTop: 56 }}
                 >
                     {
                         ranges.map((range, index) => {
@@ -87,7 +131,7 @@ const VariationListPage = React.createClass({
                 <SwipeableViews
                     index={this.state.slideIndex}
                     onChangeIndex={this.handleChangeIndex}
-                    style={{ marginTop: 24, paddingBottom: 24 }}
+                    style={{ marginTop: 80, paddingBottom: 24 }}
                 >
                     {
                         ranges.map((range) => {

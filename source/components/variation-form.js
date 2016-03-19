@@ -149,7 +149,7 @@ const VariationForm = React.createClass({
                     <ToolbarGroup float="left">
                         <ToolbarTitle
                             text={this.props.variation.label || this.context.translation["variation.form.new"]}
-                            style={{ marginLeft: 14, marginTop: 3, color: "#eee" }}
+                            style={{ marginLeft: (this.props.exists ? 0 : 14), marginTop: 3, color: "#eee" }}
                         />
                     </ToolbarGroup>
                     <ToolbarGroup float="right">
