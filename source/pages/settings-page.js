@@ -6,7 +6,6 @@ import Toolbar from "material-ui/lib/toolbar/toolbar";
 import ToolbarGroup from "material-ui/lib/toolbar/toolbar-group";
 import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
 import IconButton from "material-ui/lib/icon-button";
-import ActionDone from "material-ui/lib/svg-icons/action/done";
 import NavigationArrowBack from "material-ui/lib/svg-icons/navigation/arrow-back";
 
 const SettingsPage = React.createClass({
@@ -40,12 +39,6 @@ const SettingsPage = React.createClass({
         this.setState({ language: value });
     },
 
-    goToVariationList(e) {
-        e.preventDefault();
-
-        this.context.history.push("/");
-    },
-
     render() {
         const form = (
             <form>
@@ -72,7 +65,7 @@ const SettingsPage = React.createClass({
             <div>
                 <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0 8px 0 8px", backgroundColor: "#4A6A8A" }}>
                     <ToolbarGroup float="left">
-                        <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.goToVariationList}>
+                        <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleSubmit}>
                             <NavigationArrowBack color="#eee" />
                         </IconButton>
                     </ToolbarGroup>
@@ -81,11 +74,6 @@ const SettingsPage = React.createClass({
                             text={this.context.translation["settings.form.title"]}
                             style={{ marginTop: 2, color: "#eee" }}
                         />
-                    </ToolbarGroup>
-                    <ToolbarGroup float="right">
-                        <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleSubmit}>
-                            <ActionDone color="#eee" />
-                        </IconButton>
                     </ToolbarGroup>
                 </Toolbar>
                 <div style={{ padding: 22 }}>

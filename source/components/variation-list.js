@@ -30,6 +30,7 @@ const VariationList = React.createClass({
                 {
                     this.props.variations.map((variation, index) =>
                         <ListItem
+                            disableTouchRipple
                             primaryText={
                                 <div className="row between-xs">
                                     <span className="flex-xs">

@@ -6,9 +6,11 @@ import MenuItem from "material-ui/lib/menus/menu-item";
 import Toolbar from "material-ui/lib/toolbar/toolbar";
 import ToolbarGroup from "material-ui/lib/toolbar/toolbar-group";
 import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
+import ToolbarSeparator from "material-ui/lib/toolbar/toolbar-separator";
 import IconButton from "material-ui/lib/icon-button";
 import ActionDone from "material-ui/lib/svg-icons/action/done";
 import ActionDelete from "material-ui/lib/svg-icons/action/delete";
+import NavigationArrowBack from "material-ui/lib/svg-icons/navigation/arrow-back";
 
 const VariationForm = React.createClass({
     propTypes: {
@@ -19,7 +21,8 @@ const VariationForm = React.createClass({
     },
 
     contextTypes: {
-        translation: PropTypes.object.isRequired
+        translation: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
     },
 
     getDefaultProps() {
@@ -46,6 +49,13 @@ const VariationForm = React.createClass({
         if (props.variation) {
             this.setState(props.variation);
         }
+    },
+
+
+    goToVariationList(e) {
+        e.preventDefault();
+
+        this.context.history.push("/");
     },
 
     handleSubmit(e) {
@@ -131,7 +141,7 @@ const VariationForm = React.createClass({
         let actionDelete;
         if (this.props.exists) {
             actionDelete = (
-                <ToolbarGroup float="left">
+                <ToolbarGroup float="right">
                     <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleDelete}>
                         <ActionDelete color="#eee" />
                     </IconButton>
@@ -144,11 +154,15 @@ const VariationForm = React.createClass({
         return (
             <div>
                 <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0 8px 0 8px", backgroundColor: "#4A6A8A" }}>
-                    {actionDelete}
+                    <ToolbarGroup float="left">
+                        <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.goToVariationList}>
+                            <NavigationArrowBack color="#eee" />
+                        </IconButton>
+                    </ToolbarGroup>
                     <ToolbarGroup float="left">
                         <ToolbarTitle
                             text={this.props.variation.label || this.context.translation["variation.form.new"]}
-                            style={{ marginLeft: (this.props.exists ? 0 : 14), marginTop: 2, color: "#eee" }}
+                            style={{ marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>
                     <ToolbarGroup float="right">
@@ -156,6 +170,7 @@ const VariationForm = React.createClass({
                             <ActionDone color="#eee" />
                         </IconButton>
                     </ToolbarGroup>
+                    {actionDelete}
                 </Toolbar>
                 <div style={{ padding: 22 }}>
                     {form}

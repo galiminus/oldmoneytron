@@ -5,6 +5,8 @@ import ToolbarGroup from "material-ui/lib/toolbar/toolbar-group";
 import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
 import IconButton from "material-ui/lib/icon-button";
 import NavigationMenu from "material-ui/lib/svg-icons/navigation/menu";
+import ActionSettings from "material-ui/lib/svg-icons/action/settings";
+import ActionCopyright from "material-ui/lib/svg-icons/action/copyright";
 
 import Divider from "material-ui/lib/divider";
 import Tabs from "material-ui/lib/tabs/tabs";
@@ -91,9 +93,9 @@ const VariationListPage = React.createClass({
         return (
             <div>
                 <LeftNav open={this.state.leftNavOpen} docked={false} onRequestChange={this.toggleLeftNav}>
-                    <MenuItem onTouchTap={this.goToSettings}>{this.context.translation["leftnav.settings"]}</MenuItem>
+                    <MenuItem leftIcon={<ActionSettings />} onTouchTap={this.goToSettings}>{this.context.translation["leftnav.settings"]}</MenuItem>
                     <Divider />
-                    <MenuItem onTouchTap={this.goToBuyRights}>{this.context.translation["leftnav.buyRights"]}</MenuItem>
+                    <MenuItem leftIcon={<ActionCopyright />} onTouchTap={this.goToBuyRights}>{this.context.translation["leftnav.buyRights"]}</MenuItem>
                 </LeftNav>
                 <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0", backgroundColor: "#4A6A8A", position: "fixed", zIndex: 1 }}>
                     <ToolbarGroup float="left">
