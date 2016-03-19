@@ -10,9 +10,7 @@ export default {
     "variation.list.frequency.12": "par an",
     "variation.list.frequency.24": "tout les deux ans",
 
-    "variation.form.delete": "Supprimer",
-    "variation.form.cancel": "Annuler",
-    "variation.form.submit": "Enregister",
+    "variation.form.new": "Nouvelle entrée",
 
     "variation.form.tab.income": "Rentrée d'argent",
     "variation.form.tab.spending": "Dépense",

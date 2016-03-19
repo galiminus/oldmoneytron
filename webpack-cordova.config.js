@@ -58,6 +58,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
         }),
+        new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new WebpackCordovaPlugin({
             config: 'config.xml',
             src: 'index.html',

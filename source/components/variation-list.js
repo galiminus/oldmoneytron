@@ -1,10 +1,10 @@
 import React, { PropTypes } from "react";
 
-import moment from "moment";
-import numeral from "numeral";
-
 import List from "material-ui/lib/lists/list";
 import ListItem from "material-ui/lib/lists/list-item";
+
+import Amount from "components/amount";
+import Frequency from "components/frequency";
 
 const VariationList = React.createClass({
     propTypes: {
@@ -18,22 +18,10 @@ const VariationList = React.createClass({
         currency: React.PropTypes.string.isRequired
     },
 
-    renderAmount(variation) {
-        let amount;
+    handleTouchTap(e, index) {
+        e.preventDefault();
 
-        if (variation.frequency === 0) {
-            amount = variation.amount;
-        } else {
-            amount = variation.amount / variation.frequency * this.props.multiplier;
-        }
-        return (numeral(amount).format("0,0[.]00 $"));
-    },
-
-    renderFrequency(variation) {
-        if (variation.frequency === 0) {
-            return (moment(variation.createdAt).format("dddd D"));
-        }
-        return (numeral(variation.amount).format("0,0[.]00 $") + " " + this.context.translation[`variation.list.frequency.${variation.frequency}`]);
+        this.props.onEditVariation(index)
     },
 
     render() {
@@ -48,12 +36,12 @@ const VariationList = React.createClass({
                                         {variation.label}
                                     </span>
                                     <span className="flex-xs">
-                                        {this.renderAmount(variation)}
+                                        <Amount variation={variation} multiplier={this.props.multiplier} />
                                     </span>
                                 </div>
                             }
-                            secondaryText={this.renderFrequency(variation)}
-                            onTouchTap={() => this.props.onEditVariation(index) }
+                            secondaryText={<Frequency variation={variation} />}
+                            onTouchTap={(e) => this.handleTouchTap(e, index)}
                             key={index}
                         />
                     )

@@ -46,12 +46,14 @@ const VariationFormPage = React.createClass({
 
     render() {
         return (
-            <VariationForm
-                onSubmit={this.handleSubmit}
-                onDelete={this.handleDelete}
-                deletable={!!this.props.routeParams.id}
-                variation={this.state.variation}
-            />
+            <div style={{ minHeight: "100%" }}>
+                <VariationForm
+                    onSubmit={this.handleSubmit}
+                    onDelete={this.handleDelete}
+                    exists={!!this.props.routeParams.id}
+                    variation={this.state.variation}
+                />
+            </div>
         );
     }
 });

@@ -4,17 +4,27 @@ import TextField from "material-ui/lib/text-field";
 import FlatButton from "material-ui/lib/flat-button";
 import SelectField from "material-ui/lib/select-field";
 import MenuItem from "material-ui/lib/menus/menu-item";
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
+import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import IconButton from 'material-ui/lib/icon-button';
+import ActionDone from "material-ui/lib/svg-icons/action/done";
+import ActionDelete from "material-ui/lib/svg-icons/action/delete";
 
 const VariationForm = React.createClass({
     propTypes: {
         onSubmit: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
-        deletable: PropTypes.bool,
+        exists: PropTypes.bool,
         variation: PropTypes.object
     },
 
     contextTypes: {
         translation: React.PropTypes.object.isRequired
+    },
+
+    getDefaultProps() {
+        return ({ variation: {} });
     },
 
     getInitialState() {
@@ -39,11 +49,15 @@ const VariationForm = React.createClass({
         }
     },
 
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault();
+
         this.props.onSubmit(this.state);
     },
 
-    handleDelete() {
+    handleDelete(e) {
+        e.preventDefault();
+
         this.props.onDelete();
     },
 
@@ -115,40 +129,38 @@ const VariationForm = React.createClass({
             </form>
         );
 
-        const deleteAction = (
-            <FlatButton
-                label={this.context.translation[`variation.form.delete`]}
-                primary
-                onTouchTap={this.handleDelete}
-            />
-        );
-
-        const submitAction = (
-            <FlatButton
-                key="submit"
-                label={this.context.translation[`variation.form.submit`]}
-                disabled={!this.isFormValid()}
-                onTouchTap={this.handleSubmit}
-            />
-        );
-
-        const actions = (
-            <div className="row between-xs">
-                <div>
-                    {(() => this.props.deletable ? deleteAction : null)()}
-                </div>
-                <div>
-                    {submitAction}
-                </div>
-            </div>
-        );
+        let actionDelete;
+        if (this.props.exists) {
+            actionDelete = (
+                <ToolbarGroup float="left">
+                    <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleDelete} disabled={!this.isFormValid()}>
+                        <ActionDelete color="#eee" />
+                    </IconButton>
+                </ToolbarGroup>
+            );
+        } else {
+            actionDelete = <span />;
+        }
 
         return (
-            <div style={{ padding: 16 }}>
-                <div style={{ padding: 6 }}>
+            <div>
+                <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0 8px 0 8px", backgroundColor: "#4A6A8A" }}>
+                    {actionDelete}
+                    <ToolbarGroup float="left">
+                        <ToolbarTitle
+                            text={this.props.variation.label || this.context.translation["variation.form.new"]}
+                            style={{ marginLeft: 14, marginTop: 3, color: "#eee" }}
+                        />
+                    </ToolbarGroup>
+                    <ToolbarGroup float="right">
+                        <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleSubmit} disabled={!this.isFormValid()}>
+                            <ActionDone color="#eee" />
+                        </IconButton>
+                    </ToolbarGroup>
+                </Toolbar>
+                <div style={{ padding: 22 }}>
                     {form}
                 </div>
-                {actions}
             </div>
         );
     }

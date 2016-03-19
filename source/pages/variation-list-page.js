@@ -1,5 +1,7 @@
 import React, { PropTypes } from "react";
 
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 import FloatingActionButton from "material-ui/lib/floating-action-button";
 import ContentAdd from "material-ui/lib/svg-icons/content/add";
 import Divider from "material-ui/lib/divider";
@@ -33,7 +35,9 @@ const VariationListPage = React.createClass({
         };
     },
 
-    goToNewVariationForm() {
+    goToNewVariationForm(e) {
+        e.preventDefault();
+
         this.context.history.push("/new");
     },
 
@@ -68,6 +72,9 @@ const VariationListPage = React.createClass({
                 <Tabs
                     onChange={this.handleChangeIndex}
                     value={this.state.slideIndex}
+                    inkBarStyle={{ backgroundColor: "rgb(230, 40, 40)" }}
+                    tabItemContainerStyle={{ backgroundColor: "#4A6A8A" }}
+                    style={{ position: "fixed", width: "100%", zIndex: 1 }}
                 >
                     {
                         ranges.map((range, index) => {
@@ -80,11 +87,12 @@ const VariationListPage = React.createClass({
                 <SwipeableViews
                     index={this.state.slideIndex}
                     onChangeIndex={this.handleChangeIndex}
+                    style={{ marginTop: 24, paddingBottom: 24 }}
                 >
                     {
                         ranges.map((range) => {
                             return (
-                                <div key={range} style={{ padding: 24 }}>
+                                <div key={range} style={{ padding: 24, minHeight: "100%" }}>
                                         <VariationSummary
                                             variations={this.props.variations}
                                             multiplier={this.rangeToMultiplier(range)}
@@ -100,14 +108,6 @@ const VariationListPage = React.createClass({
                         })
                     }
                 </SwipeableViews>
-                <div style={{ position: "absolute", right: 72 }}>
-                    <FloatingActionButton
-                        style={{ position: "fixed", bottom: 16 }}
-                        onMouseUp={this.goToNewVariationForm}
-                    >
-                        <ContentAdd />
-                    </FloatingActionButton>
-                </div>
             </div>
         );
     }
