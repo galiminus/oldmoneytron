@@ -13,6 +13,13 @@ export default {
     "variation.list.frequency.12": "par an",
     "variation.list.frequency.24": "tout les deux ans",
 
+    "settings.form.title": "Configuration",
+    "settings.form.language": "Langue",
+    "settings.form.language.fr": "Français",
+    "settings.form.language.en": "English",
+
+    "buyRights.title": "Acheter les droits",
+
     "variation.form.new": "Nouvelle entrée",
 
     "variation.form.tab.income": "Rentrée d'argent",

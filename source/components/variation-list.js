@@ -14,14 +14,14 @@ const VariationList = React.createClass({
     },
 
     contextTypes: {
-        translation: React.PropTypes.object.isRequired,
-        currency: React.PropTypes.string.isRequired
+        translation: PropTypes.object.isRequired,
+        currency: PropTypes.string.isRequired
     },
 
     handleTouchTap(e, index) {
         e.preventDefault();
 
-        this.props.onEditVariation(index)
+        this.props.onEditVariation(index);
     },
 
     render() {

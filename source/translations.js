@@ -1,5 +1,6 @@
-import frFR from "translations/fr-FR";
+import fr from "translations/fr";
+import en from "translations/en";
 
 export default {
-    frFR
+    fr, en
 };

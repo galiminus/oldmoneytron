@@ -17,7 +17,7 @@ const Amount = React.createClass({
             amount = this.props.variation.amount / this.props.variation.frequency * this.props.multiplier;
         }
 
-        if (this.props.variation.type == "spending") {
+        if (this.props.variation.type === "spending") {
             amount = -amount;
         }
 

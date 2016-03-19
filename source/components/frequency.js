@@ -9,7 +9,7 @@ const Frequency = React.createClass({
     },
 
     contextTypes: {
-        translation: React.PropTypes.object.isRequired
+        translation: PropTypes.object.isRequired
     },
 
     render() {
@@ -17,7 +17,7 @@ const Frequency = React.createClass({
         if (this.props.variation.frequency === 0) {
             frequency = moment(this.props.variation.createdAt).format("dddd D");
         } else {
-            frequency = numeral(this.props.variation.amount).format("0,0[.]00 $") + " " + this.context.translation[`variation.list.frequency.${this.props.variation.frequency}`]
+            frequency = numeral(this.props.variation.amount).format("0,0[.]00 $") + " " + this.context.translation[`variation.list.frequency.${this.props.variation.frequency}`];
         }
 
         return (

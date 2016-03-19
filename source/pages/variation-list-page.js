@@ -1,20 +1,16 @@
 import React, { PropTypes } from "react";
 
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
-import IconButton from 'material-ui/lib/icon-button';
+import Toolbar from "material-ui/lib/toolbar/toolbar";
+import ToolbarGroup from "material-ui/lib/toolbar/toolbar-group";
+import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
+import IconButton from "material-ui/lib/icon-button";
 import NavigationMenu from "material-ui/lib/svg-icons/navigation/menu";
 
-import FloatingActionButton from "material-ui/lib/floating-action-button";
-import ContentAdd from "material-ui/lib/svg-icons/content/add";
 import Divider from "material-ui/lib/divider";
 import Tabs from "material-ui/lib/tabs/tabs";
 import Tab from "material-ui/lib/tabs/tab";
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import LeftNav from "material-ui/lib/left-nav";
+import MenuItem from "material-ui/lib/menus/menu-item";
 
 import SwipeableViews from "react-swipeable-views";
 
@@ -28,8 +24,7 @@ const VariationListPage = React.createClass({
 
     contextTypes: {
         translation: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired,
-        translation: PropTypes.object.isRequired
+        history: PropTypes.object.isRequired
     },
 
     getDefaultProps() {
@@ -87,7 +82,7 @@ const VariationListPage = React.createClass({
     },
 
     toggleLeftNav() {
-        this.setState({ leftNavOpen: !this.state.leftNavOpen })
+        this.setState({ leftNavOpen: !this.state.leftNavOpen });
     },
 
     render() {
@@ -109,7 +104,7 @@ const VariationListPage = React.createClass({
                     <ToolbarGroup float="left">
                         <ToolbarTitle
                             text={"Moneytron"}
-                            style={{ marginTop: 3, color: "#eee" }}
+                            style={{ marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>
                 </Toolbar>

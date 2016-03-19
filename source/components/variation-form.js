@@ -1,13 +1,12 @@
 import React, { PropTypes } from "react";
 
 import TextField from "material-ui/lib/text-field";
-import FlatButton from "material-ui/lib/flat-button";
 import SelectField from "material-ui/lib/select-field";
 import MenuItem from "material-ui/lib/menus/menu-item";
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
-import IconButton from 'material-ui/lib/icon-button';
+import Toolbar from "material-ui/lib/toolbar/toolbar";
+import ToolbarGroup from "material-ui/lib/toolbar/toolbar-group";
+import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
+import IconButton from "material-ui/lib/icon-button";
 import ActionDone from "material-ui/lib/svg-icons/action/done";
 import ActionDelete from "material-ui/lib/svg-icons/action/delete";
 
@@ -20,7 +19,7 @@ const VariationForm = React.createClass({
     },
 
     contextTypes: {
-        translation: React.PropTypes.object.isRequired
+        translation: PropTypes.object.isRequired
     },
 
     getDefaultProps() {
@@ -133,7 +132,7 @@ const VariationForm = React.createClass({
         if (this.props.exists) {
             actionDelete = (
                 <ToolbarGroup float="left">
-                    <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleDelete} disabled={!this.isFormValid()}>
+                    <IconButton touch style={{ marginTop: 5 }} onTouchTap={this.handleDelete}>
                         <ActionDelete color="#eee" />
                     </IconButton>
                 </ToolbarGroup>
@@ -149,7 +148,7 @@ const VariationForm = React.createClass({
                     <ToolbarGroup float="left">
                         <ToolbarTitle
                             text={this.props.variation.label || this.context.translation["variation.form.new"]}
-                            style={{ marginLeft: (this.props.exists ? 0 : 14), marginTop: 3, color: "#eee" }}
+                            style={{ marginLeft: (this.props.exists ? 0 : 14), marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>
                     <ToolbarGroup float="right">
