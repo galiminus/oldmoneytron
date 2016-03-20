@@ -26,6 +26,16 @@ const VariationFormPage = React.createClass({
         }
     },
 
+    getLabelAutoComplete() {
+        return (
+            this.props.variations.filter((variation) => {
+                return (variation.frequency === 0);
+            }).map((variation) => {
+                return (variation.label);
+            })
+        );
+    },
+
     handleSubmit(variation) {
         if (this.props.routeParams.id) {
             this.props.variations[this.props.routeParams.id] = variation;
@@ -52,6 +62,7 @@ const VariationFormPage = React.createClass({
                     onDelete={this.handleDelete}
                     exists={!!this.props.routeParams.id}
                     variation={this.state.variation}
+                    labelAutoComplete={this.getLabelAutoComplete()}
                 />
             </div>
         );

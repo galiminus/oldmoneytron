@@ -7,6 +7,7 @@ import IconButton from "material-ui/lib/icon-button";
 import NavigationMenu from "material-ui/lib/svg-icons/navigation/menu";
 import ActionSettings from "material-ui/lib/svg-icons/action/settings";
 import ActionCopyright from "material-ui/lib/svg-icons/action/copyright";
+import EditorPieChart from "material-ui/lib/svg-icons/editor/attach-money";
 
 import Divider from "material-ui/lib/divider";
 import Tabs from "material-ui/lib/tabs/tabs";
@@ -64,6 +65,12 @@ const VariationListPage = React.createClass({
         this.context.history.push("/buyRights");
     },
 
+    goToVariationSpendingsPie(e) {
+        e.preventDefault();
+
+        this.context.history.push("/spendingsPie");
+    },
+
     rangeToMultiplier(range) {
         switch (range) {
         case "day":
@@ -90,12 +97,34 @@ const VariationListPage = React.createClass({
     render() {
         const ranges = ["day", "month", "year"];
 
+        const leftNavItemStyle = { paddingLeft: 50 };
+
         return (
             <div>
                 <LeftNav open={this.state.leftNavOpen} docked={false} onRequestChange={this.toggleLeftNav}>
-                    <MenuItem leftIcon={<ActionSettings />} onTouchTap={this.goToSettings}>{this.context.translation["leftnav.settings"]}</MenuItem>
+                    <MenuItem
+                        innerDivStyle={leftNavItemStyle}
+                        leftIcon={<ActionSettings />}
+                        onTouchTap={this.goToSettings}
+                    >
+                        {this.context.translation["leftnav.settings"]}
+                    </MenuItem>
                     <Divider />
-                    <MenuItem leftIcon={<ActionCopyright />} onTouchTap={this.goToBuyRights}>{this.context.translation["leftnav.buyRights"]}</MenuItem>
+                    <MenuItem
+                        innerDivStyle={leftNavItemStyle}
+                        leftIcon={<EditorPieChart />}
+                        onTouchTap={this.goToVariationSpendingsPie}
+                    >
+                        {this.context.translation["leftnav.spendingsPie"]}
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem
+                        innerDivStyle={leftNavItemStyle}
+                        leftIcon={<ActionCopyright />}
+                        onTouchTap={this.goToBuyRights}
+                    >
+                        {this.context.translation["leftnav.buyRights"]}
+                    </MenuItem>
                 </LeftNav>
                 <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0", backgroundColor: "#4A6A8A", position: "fixed", zIndex: 1 }}>
                     <ToolbarGroup float="left">

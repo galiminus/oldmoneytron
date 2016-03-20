@@ -1,12 +1,12 @@
 import React, { PropTypes } from "react";
 
 import TextField from "material-ui/lib/text-field";
+import AutoComplete from "material-ui/lib/auto-complete";
 import SelectField from "material-ui/lib/select-field";
 import MenuItem from "material-ui/lib/menus/menu-item";
 import Toolbar from "material-ui/lib/toolbar/toolbar";
 import ToolbarGroup from "material-ui/lib/toolbar/toolbar-group";
 import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
-import ToolbarSeparator from "material-ui/lib/toolbar/toolbar-separator";
 import IconButton from "material-ui/lib/icon-button";
 import ActionDone from "material-ui/lib/svg-icons/action/done";
 import ActionDelete from "material-ui/lib/svg-icons/action/delete";
@@ -17,7 +17,8 @@ const VariationForm = React.createClass({
         onSubmit: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         exists: PropTypes.bool,
-        variation: PropTypes.object
+        variation: PropTypes.object,
+        labelAutoComplete: PropTypes.array
     },
 
     contextTypes: {
@@ -26,7 +27,10 @@ const VariationForm = React.createClass({
     },
 
     getDefaultProps() {
-        return ({ variation: {} });
+        return ({
+            variation: {},
+            labelAutoComplete: []
+        });
     },
 
     getInitialState() {
@@ -74,8 +78,8 @@ const VariationForm = React.createClass({
         this.setState({ type: value });
     },
 
-    handleLabelChange(e) {
-        this.setState({ label: e.target.value });
+    handleLabelChange(value) {
+        this.setState({ label: value });
     },
 
     handleAmountChange(e) {
@@ -94,6 +98,10 @@ const VariationForm = React.createClass({
         this.setState({ frequency: value });
     },
 
+    filterLabelAutoCompete(searchText, key) {
+        return (!!key.match(new RegExp(searchText, "gi")));
+    },
+
     isFormValid() {
         return (this.state.label.length > 0 && (this.state.amount || "").length > 0);
     },
@@ -108,11 +116,14 @@ const VariationForm = React.createClass({
                     </SelectField>
                 </div>
                 <div>
-                    <TextField
+                    <AutoComplete
                         fullWidth
                         floatingLabelText={this.context.translation[`variation.form.label`]}
-                        value={this.state.label}
-                        onChange={this.handleLabelChange}
+                        searchText={this.state.label}
+                        onUpdateInput={this.handleLabelChange}
+                        onNewRequest={this.handleLabelChange}
+                        dataSource={this.props.labelAutoComplete}
+                        filter={AutoComplete.fuzzyFilter}
                     />
                 </div>
                 <div>

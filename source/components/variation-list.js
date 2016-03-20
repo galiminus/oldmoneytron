@@ -14,8 +14,7 @@ const VariationList = React.createClass({
     },
 
     contextTypes: {
-        translation: PropTypes.object.isRequired,
-        currency: PropTypes.string.isRequired
+        translation: PropTypes.object.isRequired
     },
 
     handleTouchTap(e, index) {

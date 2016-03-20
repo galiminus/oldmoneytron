@@ -1,6 +1,7 @@
 export default {
     "leftnav.settings": "Configuration",
     "leftnav.buyRights": "Acheter les droits",
+    "leftnav.spendingsPie": "Distribution des dépenses",
 
     "variation.list.range.day": "Par jour",
     "variation.list.range.month": "Par mois",

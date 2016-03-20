@@ -11,13 +11,12 @@ import Translations from "translations";
 
 import numeral from "numeral";
 import fr from "numeral/languages/fr";
+import en from "numeral/languages/fr";
 
 numeral.language("fr", fr);
-numeral.language("fr");
+numeral.language("en", en);
 
 import moment from "moment";
-
-moment.locale("fr");
 
 const MoneyPage = React.createClass({
     propTypes: {
@@ -30,8 +29,7 @@ const MoneyPage = React.createClass({
     },
 
     childContextTypes: {
-        translation: PropTypes.object.isRequired,
-        currency: PropTypes.string.isRequired
+        translation: PropTypes.object.isRequired
     },
 
     getInitialState() {
@@ -40,8 +38,7 @@ const MoneyPage = React.createClass({
 
     getChildContext() {
         return {
-            translation: Translations[this.state.settings.language],
-            currency: this.state.settings.currency
+            translation: Translations[this.state.settings.language]
         };
     },
 
@@ -49,12 +46,18 @@ const MoneyPage = React.createClass({
         this.setState({ variations: JSON.parse((localStorage.getItem("variations") || "[]")) });
 
         const settings = JSON.parse((localStorage.getItem("settings") || "{}"));
-        this.setState({ settings: { currency: "EUR", language: "en", ...settings } });
+        this.setState({ settings: { language: "en", ...settings } });
+
+        numeral.language(settings.language);
+        moment.locale(settings.language);
     },
 
     componentDidUpdate() {
         localStorage.setItem("variations", JSON.stringify(this.state.variations));
         localStorage.setItem("settings", JSON.stringify(this.state.settings));
+
+        numeral.language(this.state.settings.language);
+        moment.locale(this.state.settings.language);
     },
 
     goToNewVariationForm(e) {

@@ -1,6 +1,7 @@
 export default {
     "leftnav.settings": "Settings",
     "leftnav.buyRights": "Buy the copyrights",
+    "leftnav.spendingsPie": "Spendings distribution",
 
     "variation.list.range.day": "By day",
     "variation.list.range.month": "By month",
