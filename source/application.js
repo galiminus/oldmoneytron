@@ -11,6 +11,7 @@ import VariationFormPage from "pages/variation-form-page";
 import VariationListPage from "pages/variation-list-page";
 import BuyRightsPage from "pages/buy-rights-page";
 import SettingsPage from "pages/settings-page";
+import VariationSpendingsPiePage from "pages/variation-spendings-pie-page";
 
 import _FlexBoxGrid from "flexboxgrid-with-hide";
 
@@ -25,6 +26,7 @@ const Application = React.createClass({
                     <Route path="/new" component={VariationFormPage} />
                     <Route path="/settings" component={SettingsPage} />
                     <Route path="/buyRights" component={BuyRightsPage} />
+                    <Route path="/spendingsPie" component={VariationSpendingsPiePage} />
                 </Route>
             </Router>
         );
