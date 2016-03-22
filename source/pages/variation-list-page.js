@@ -15,6 +15,8 @@ import Tab from "material-ui/lib/tabs/tab";
 import LeftNav from "material-ui/lib/left-nav";
 import MenuItem from "material-ui/lib/menus/menu-item";
 
+import moment from "moment";
+
 import SwipeableViews from "react-swipeable-views";
 
 import VariationList from "components/variation-list";
@@ -43,14 +45,26 @@ const VariationListPage = React.createClass({
         };
     },
 
+    getVariations(range) {
+        return (
+            this.props.variations.filter((variation) => {
+                return (
+                    variation.frequency > 0 || (
+                        moment(variation.createdAt).isAfter(moment().subtract(1, range))
+                    )
+                );
+            })
+        );
+    },
+
     goToNewVariationForm(e) {
         e.preventDefault();
 
         this.context.history.push("/new");
     },
 
-    goToEditVariationForm(index) {
-        this.context.history.push(`/edit/${index}`);
+    goToEditVariationForm(variation) {
+        this.context.history.push(`/edit/${variation.createdAt}`);
     },
 
     goToSettings(e) {
@@ -164,13 +178,13 @@ const VariationListPage = React.createClass({
                             return (
                                 <div key={range} style={{ padding: 24, minHeight: "100%" }}>
                                         <VariationSummary
-                                            variations={this.props.variations}
+                                            variations={this.getVariations(range)}
                                             multiplier={this.rangeToMultiplier(range)}
                                         />
                                         <Divider inset />
                                         <VariationList
+                                            variations={this.getVariations(range)}
                                             multiplier={this.rangeToMultiplier(range)}
-                                            variations={this.props.variations}
                                             onEditVariation={this.goToEditVariationForm}
                                         />
                                 </div>

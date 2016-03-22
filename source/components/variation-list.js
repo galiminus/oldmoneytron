@@ -27,7 +27,7 @@ const VariationList = React.createClass({
         return (
             <List>
                 {
-                    this.props.variations.map((variation, index) =>
+                    this.props.variations.map((variation) =>
                         <ListItem
                             disableTouchRipple
                             primaryText={
@@ -41,8 +41,8 @@ const VariationList = React.createClass({
                                 </div>
                             }
                             secondaryText={<Frequency variation={variation} />}
-                            onTouchTap={(e) => this.handleTouchTap(e, index)}
-                            key={index}
+                            onTouchTap={(e) => this.handleTouchTap(e, variation)}
+                            key={variation.createdAt}
                         />
                     )
                 }

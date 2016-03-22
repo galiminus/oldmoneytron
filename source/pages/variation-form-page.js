@@ -2,6 +2,15 @@ import React, { PropTypes } from "react";
 
 import VariationForm from "components/variation-form";
 
+function getVariationIndex(variations, createdAt) {
+    for (const index in variations) {
+        if (Number(variations[index].createdAt) === Number(createdAt)) {
+            return (index);
+        }
+    }
+    return (-1);
+}
+
 const VariationFormPage = React.createClass({
     propTypes: {
         routeParams: PropTypes.object.isRequired,
@@ -21,8 +30,11 @@ const VariationFormPage = React.createClass({
     },
 
     componentWillMount() {
+        const index = getVariationIndex(this.props.variations, this.props.routeParams.id);
+        this.setState({ index });
+
         if (this.props.routeParams.id) {
-            this.setState({ variation: this.props.variations[Number(this.props.routeParams.id)] });
+            this.setState({ variation: this.props.variations[index] });
         }
     },
 
@@ -38,7 +50,7 @@ const VariationFormPage = React.createClass({
 
     handleSubmit(variation) {
         if (this.props.routeParams.id) {
-            this.props.variations[this.props.routeParams.id] = variation;
+            this.props.variations[this.state.index] = variation;
         } else {
             this.props.variations.push(variation);
         }
@@ -46,7 +58,7 @@ const VariationFormPage = React.createClass({
     },
 
     handleDelete() {
-        this.props.variations.splice(this.props.routeParams.id, 1);
+        this.props.variations.splice(this.state.index, 1);
         this.goToList();
     },
 

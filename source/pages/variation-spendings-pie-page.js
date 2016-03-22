@@ -6,12 +6,11 @@ import ToolbarTitle from "material-ui/lib/toolbar/toolbar-title";
 import IconButton from "material-ui/lib/icon-button";
 import Tabs from "material-ui/lib/tabs/tabs";
 import Tab from "material-ui/lib/tabs/tab";
-import NavigationMenu from "material-ui/lib/svg-icons/navigation/menu";
 import NavigationArrowBack from "material-ui/lib/svg-icons/navigation/arrow-back";
 
 import SwipeableViews from "react-swipeable-views";
 
-import { Pie } from 'react-pathjs-chart';
+import { Pie } from "react-pathjs-chart";
 
 const VariationSpendingsPiePage = React.createClass({
     propTypes: {
@@ -34,6 +33,39 @@ const VariationSpendingsPiePage = React.createClass({
             slideIndex: 0,
             leftNavOpen: false
         };
+    },
+
+    getChartData() {
+        return (
+            this.props.variations.filter((variation) => {
+                return (variation.type === "spending");
+            }).map((variation) => {
+                return ({ name: variation.label, population: Number(variation.amount) });
+            })
+        );
+    },
+
+    getChartOptions() {
+        return ({
+            margin: { top: 0, left: 0, right: 0, bottom: 0 },
+            width: window.innerWidth,
+            height: window.innerWidth,
+            color: "#2980B9",
+            r: 100,
+            R: window.innerWidth / 2 - 80,
+            legendPosition: "topLeft",
+            animate: {
+                type: "oneByOne",
+                duration: 200,
+                fillTransition: 3
+            },
+            label: {
+                fontFamily: "Roboto, sans-serif",
+                fontSize: 12,
+                fontWeight: true,
+                color: "#ECF0F1"
+            }
+        });
     },
 
     goToNewVariationForm(e) {
@@ -81,39 +113,6 @@ const VariationSpendingsPiePage = React.createClass({
         e.preventDefault();
 
         this.context.history.push("/");
-    },
-
-    getChartData() {
-        return (
-            this.props.variations.filter((variation) => {
-                return (variation.type == "spending")
-            }).map((variation) => {
-                return ( { name: variation.label, population: Number(variation.amount) } )
-            })
-        )
-    },
-
-    getChartOptions() {
-        return {
-            margin: {top: 0, left: 0, right: 0, bottom: 0},
-            width: window.innerWidth,
-            height: window.innerWidth,
-            color: '#2980B9',
-            r: 100,
-            R: window.innerWidth / 2 - 80,
-            legendPosition: 'topLeft',
-            animate:{
-                type: 'oneByOne',
-                duration: 200,
-                fillTransition: 3
-            },
-            label:{
-                fontFamily: 'Roboto, sans-serif',
-                fontSize: 12,
-                fontWeight: true,
-                color: '#ECF0F1'
-            }
-        }
     },
 
     render() {
