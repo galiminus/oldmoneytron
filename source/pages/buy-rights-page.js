@@ -105,7 +105,7 @@ const BuyRightsPage = React.createClass({
                     </ToolbarGroup>
                     <ToolbarGroup float="left">
                         <ToolbarTitle
-                            text={this.context.translation["buyRights.title"]}
+                            text={this.context.translation.t("buyRights.title")}
                             style={{ marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>

@@ -111,14 +111,14 @@ const VariationForm = React.createClass({
             <form>
                 <div>
                     <SelectField fullWidth value={this.state.type} onChange={this.handleTypeChange}>
-                        <MenuItem value="spending" primaryText={this.context.translation["variation.form.tab.spending"]} />
-                        <MenuItem value="income" primaryText={this.context.translation["variation.form.tab.income"]} />
+                        <MenuItem value="spending" primaryText={this.context.translation.t("variation.form.tab.spending")} />
+                        <MenuItem value="income" primaryText={this.context.translation.t("variation.form.tab.income")} />
                     </SelectField>
                 </div>
                 <div>
                     <AutoComplete
                         fullWidth
-                        floatingLabelText={this.context.translation[`variation.form.label`]}
+                        floatingLabelText={this.context.translation.t(`variation.form.label`)}
                         searchText={this.state.label}
                         onUpdateInput={this.handleLabelChange}
                         onNewRequest={this.handleLabelChange}
@@ -131,7 +131,7 @@ const VariationForm = React.createClass({
                         fullWidth
                         type="number"
                         step="0.01"
-                        floatingLabelText={this.context.translation[`variation.form.amount`]}
+                        floatingLabelText={this.context.translation.t(`variation.form.amount`)}
                         value={this.state.amount}
                         onChange={this.handleAmountChange}
                     />
@@ -141,7 +141,7 @@ const VariationForm = React.createClass({
                     <SelectField fullWidth value={this.state.frequency} onChange={this.handleFrequencyChange}>
                         {
                             [0, 1, 3, 6, 12, 24].map((frequency) => {
-                                return (<MenuItem key={frequency} value={frequency} primaryText={this.context.translation[`variation.form.frequency.${frequency}`]} />);
+                                return (<MenuItem key={frequency} value={frequency} primaryText={this.context.translation.t(`variation.form.frequency.${frequency}`)} />);
                             })
                         }
                     </SelectField>
@@ -172,7 +172,7 @@ const VariationForm = React.createClass({
                     </ToolbarGroup>
                     <ToolbarGroup float="left">
                         <ToolbarTitle
-                            text={this.props.variation.label || this.context.translation["variation.form.new"]}
+                            text={this.props.variation.label || this.context.translation.t("variation.form.new")}
                             style={{ marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>

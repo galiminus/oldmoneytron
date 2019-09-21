@@ -47,12 +47,12 @@ const SettingsPage = React.createClass({
                         fullWidth
                         value={this.state.language}
                         onChange={this.handleLanguageChange}
-                        floatingLabelText={this.context.translation["settings.form.language"]}
+                        floatingLabelText={this.context.translation.t("settings.form.language")}
                     >
                         {
                             ["en", "fr"].map((language) => {
                                 return (
-                                    <MenuItem key={language} value={language} primaryText={this.context.translation[`settings.form.language.${language}`]} />
+                                    <MenuItem key={language} value={language} primaryText={this.context.translation.t(`settings.form.language.${language}`)} />
                                 );
                             })
                         }
@@ -71,7 +71,7 @@ const SettingsPage = React.createClass({
                     </ToolbarGroup>
                     <ToolbarGroup float="left">
                         <ToolbarTitle
-                            text={this.context.translation["settings.form.title"]}
+                            text={this.context.translation.t("settings.form.title")}
                             style={{ marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>

@@ -8,11 +8,21 @@ export default {
     "variation.list.range.year": "Par an",
 
     "variation.list.frequency.0": "Une seule fois",
-    "variation.list.frequency.1": "par mois",
-    "variation.list.frequency.3": "tout les trois mois",
-    "variation.list.frequency.6": "tout les six mois",
-    "variation.list.frequency.12": "par an",
-    "variation.list.frequency.24": "tout les deux ans",
+    "variation.list.frequency.1": "%{amount} par mois",
+    "variation.list.frequency.3": "%{amount} tout les trois mois",
+    "variation.list.frequency.6": "%{amount} tout les six mois",
+    "variation.list.frequency.12": "%{amount} par an",
+    "variation.list.frequency.24": "%{amount} tout les deux ans",
+
+    "variation.summary.range.day": "du %{start} au %{end}",
+    "variation.summary.range.day.startFormat": "dddd Do",
+    "variation.summary.range.day.endFormat": "dddd D MMMM",
+
+    "variation.summary.range.month": "de %{start} à %{end}",
+    "variation.summary.range.month.startFormat": "MMMM",
+    "variation.summary.range.month.endFormat": "MMMM YYYY",
+
+    "variation.summary.range.year": "tout les ans",
 
     "settings.form.title": "Configuration",
     "settings.form.language": "Langue",

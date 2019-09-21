@@ -128,7 +128,7 @@ const VariationSpendingsPiePage = React.createClass({
                     </ToolbarGroup>
                     <ToolbarGroup float="left">
                         <ToolbarTitle
-                            text={this.context.translation["leftnav.spendingsPie"]}
+                            text={this.context.translation.t("leftnav.spendingsPie")}
                             style={{ marginTop: 2, color: "#eee" }}
                         />
                     </ToolbarGroup>
@@ -143,7 +143,7 @@ const VariationSpendingsPiePage = React.createClass({
                     {
                         ranges.map((range, index) => {
                             return (
-                                <Tab key={range} value={index} label={this.context.translation[`variation.list.range.${range}`]} />
+                                <Tab key={range} value={index} label={this.context.translation.t(`variation.list.range.${range}`)} />
                             );
                         })
                     }

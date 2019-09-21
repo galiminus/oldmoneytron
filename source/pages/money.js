@@ -18,6 +18,8 @@ numeral.language("en", en);
 
 import moment from "moment";
 
+import Polyglot from "node-polyglot";
+
 const MoneyPage = React.createClass({
     propTypes: {
         children: PropTypes.object.isRequired,
@@ -37,8 +39,10 @@ const MoneyPage = React.createClass({
     },
 
     getChildContext() {
+        this.polyglot.extend(Translations[this.state.settings.language]);
+
         return {
-            translation: Translations[this.state.settings.language]
+            translation: this.polyglot
         };
     },
 
@@ -50,6 +54,7 @@ const MoneyPage = React.createClass({
 
         numeral.language(settings.language);
         moment.locale(settings.language);
+        this.polyglot = new Polyglot();
     },
 
     componentDidUpdate() {

@@ -50,7 +50,7 @@ const VariationListPage = React.createClass({
             this.props.variations.filter((variation) => {
                 return (
                     variation.frequency > 0 || (
-                        moment(variation.createdAt).isAfter(moment().subtract(1, range))
+                        moment(variation.createdAt).isAfter(moment().startOf(range))
                     )
                 );
             })
@@ -121,7 +121,7 @@ const VariationListPage = React.createClass({
                         leftIcon={<ActionSettings />}
                         onTouchTap={this.goToSettings}
                     >
-                        {this.context.translation["leftnav.settings"]}
+                        {this.context.translation.t("leftnav.settings")}
                     </MenuItem>
                     <Divider />
                     <MenuItem
@@ -129,7 +129,7 @@ const VariationListPage = React.createClass({
                         leftIcon={<EditorPieChart />}
                         onTouchTap={this.goToVariationSpendingsPie}
                     >
-                        {this.context.translation["leftnav.spendingsPie"]}
+                        {this.context.translation.t("leftnav.spendingsPie")}
                     </MenuItem>
                     <Divider />
                     <MenuItem
@@ -137,7 +137,7 @@ const VariationListPage = React.createClass({
                         leftIcon={<ActionCopyright />}
                         onTouchTap={this.goToBuyRights}
                     >
-                        {this.context.translation["leftnav.buyRights"]}
+                        {this.context.translation.t("leftnav.buyRights")}
                     </MenuItem>
                 </LeftNav>
                 <Toolbar style={{ fontFamily: "Roboto, sans-serif", padding: "0", backgroundColor: "#4A6A8A", position: "fixed", zIndex: 1 }}>
@@ -163,7 +163,7 @@ const VariationListPage = React.createClass({
                     {
                         ranges.map((range, index) => {
                             return (
-                                <Tab key={range} value={index} label={this.context.translation[`variation.list.range.${range}`]} />
+                                <Tab key={range} value={index} label={this.context.translation.t(`variation.list.range.${range}`)} />
                             );
                         })
                     }
@@ -180,6 +180,7 @@ const VariationListPage = React.createClass({
                                         <VariationSummary
                                             variations={this.getVariations(range)}
                                             multiplier={this.rangeToMultiplier(range)}
+                                            range={range}
                                         />
                                         <Divider inset />
                                         <VariationList

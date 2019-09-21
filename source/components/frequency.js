@@ -17,7 +17,7 @@ const Frequency = React.createClass({
         if (this.props.variation.frequency === 0) {
             frequency = moment(this.props.variation.createdAt).format("dddd D");
         } else {
-            frequency = numeral(this.props.variation.amount).format("0,0[.]00 $") + " " + this.context.translation[`variation.list.frequency.${this.props.variation.frequency}`];
+            frequency =  this.context.translation.t(`variation.list.frequency.${this.props.variation.frequency}`, { amount: numeral(this.props.variation.amount).format("0,0[.]00 $") });
         }
 
         return (

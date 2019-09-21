@@ -8,11 +8,21 @@ export default {
     "variation.list.range.year": "By year",
 
     "variation.list.frequency.0": "one time",
-    "variation.list.frequency.1": "every month",
-    "variation.list.frequency.3": "every three month",
-    "variation.list.frequency.6": "every six month",
-    "variation.list.frequency.12": "every year",
-    "variation.list.frequency.24": "every two years",
+    "variation.list.frequency.1": "%{amount} every month",
+    "variation.list.frequency.3": "%{amount} every three month",
+    "variation.list.frequency.6": "%{amount} every six month",
+    "variation.list.frequency.12": "%{amount} every year",
+    "variation.list.frequency.24": "%{amount} every two years",
+
+    "variation.summary.range.day": "from %{start} to %{end}",
+    "variation.summary.range.day.startFormat": "dddd Do",
+    "variation.summary.range.day.endFormat": "dddd Do MMMM",
+
+    "variation.summary.range.month": "from %{start} to %{end}",
+    "variation.summary.range.month.startFormat": "MMMM",
+    "variation.summary.range.month.endFormat": "MMMM YYYY",
+
+    "variation.summary.range.year": "every year",
 
     "settings.form.title": "Settings",
     "settings.form.language": "Language",
